@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Time Projects</title>
+</head>
+<body>
+    
+
+    <div class="MyWatch">
+        <span class="H"></span>
+        <span class="M"></span> <br>
+        <span class="date"></span>
+    </div>
+
+
+    <script>
+        function myTime(){
+            var myDate = new Date();
+            var hr,min = (myDate.getMinutes() < 10) ? "0" + myDate.getMinutes() : myDate.getMinutes(),
+                sec = (myDate.getSeconds() < 10 ) ? "0" + myDate.getSeconds() : myDate.getSeconds(),
+                M = (myDate.getHours() >=12 ) ? "PM" : "AM";
+
+            if(myDate.getHours() == 0){
+                hr = 12;
+            }else if(myDate.getHours() > 12) {
+               hr = myDate.getHours() - 12;
+            }
+            else{
+              hr = myDate.getHours();
+            } 
+            
+
+            var currentTime = hr + ":" + min + ":" + sec + ":";
+
+            document.getElementsByClassName("H")[0].innerHTML = currentTime;
+            document.getElementsByClassName("M")[0].innerHTML = M;
+
+            var myDay = ["Sunday", "Monday", "Tuesday", "Wednesday", " Thurday", "Friday", "saturday"],
+
+             myMonth = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+
+             day = myDate.getDate();
+
+
+        var currentDate = myDay[myDate.getDay()] + "," + myMonth[myDate.getMonth()] + day ;
+            document.getElementsByClassName("date")[0].innerHTML = currentDate; 
+        }
+
+        myTime();
+
+        setInterval(function(){
+            myTime();
+        }, 1000);
+
+    </script>
+
+
+
+
+         
+    <style>
+        body{
+            background-color: #d9d9e2;
+        }
+        .MyWatch{
+            top: 35%;
+            left: 34%;
+            position: fixed;
+            background-color: rgb(243, 242, 242);
+            padding: 50px;
+            border-radius: 5px;
+            box-shadow: 5px 3px 2px black;
+        }
+        span{
+            font-size: 50px;
+        }
+    </style>
+
+
+</body>
+</html>
